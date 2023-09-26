@@ -121,10 +121,42 @@ li:hover {
 #introduction p {
 	margin-bottom: 0.5em;
 }
+
+#portfolio {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 25px;
+}
+
 #portfolio h2 {
 	text-align: center;
-	margin-bottom: 1em;
 }
+
+.filters-container{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+}
+
+.filter{
+	color: #1D6154;
+	border: 1px solid #1D6154;
+	border-radius: 60px;
+	background-color: transparent;
+	padding: 9px 15px;
+	font-family: 'Syne';
+	font-size: 16px;
+	font-weight: 700;
+}
+
+.filter:hover, .filter:focus{
+	background-color: #1D6154;
+	color: white;
+}
+
 .gallery {
 	width: 100%;
 	display: grid;
@@ -139,7 +171,7 @@ li:hover {
 }
 #contact {
 	width: 50%;
-margin: auto;
+	margin: auto;
 }
 #contact > * {
 	text-align: center;
