@@ -95,9 +95,15 @@ nav li {
 	font-size: 1.2em;
 }
 
-li:hover {
+nav a {
+	text-decoration: none;
+	color: black;
+}
+
+li:hover, a:hover {
 	color: #B1663C;
 }
+
 #introduction {
 	display: flex;
 	align-items: center;
@@ -206,7 +212,7 @@ input[type="submit"]{
 	font-weight: 700;
 	color: white;
 	background-color: #1D6154;
-	margin : 2em auto ;
+	/* margin : 2em auto ; */
 	width: 180px;
 	text-align: center;
 	border-radius: 60px ;
@@ -218,3 +224,78 @@ footer nav ul {
 	margin: 2em
 }
 
+/* Login section */
+
+.login-container, .login-sections, .login-buttons, #login-form{
+	display: flex;
+	flex-direction: column;
+}
+
+.login-main{
+	margin: 150px 0 0 0;
+}
+
+#login-form{
+	gap: 30px;
+}
+
+.login-container{
+	align-items: center;
+	gap: 37px;
+}
+
+.login-sections{
+	align-items: flex-start;
+	gap: 7px;
+}
+
+
+.login-label{
+	font-size: 16px;
+	font-weight: 500;
+}
+
+.login-input{
+	width: 380px;
+	height: 50px;
+	background-color: #ffffff;
+	border: none;
+	box-shadow: 0px 4px 14px 0px #00000017;
+	margin: none;
+}
+
+.login-buttons{
+	align-items: center;
+	gap: 27px;
+	margin: 7px 0 0 0;
+}
+.login-buttons > input{
+	cursor: pointer;
+}
+
+#login-connect{
+	border: none;
+	padding: 10px 38px;
+}
+
+#login-remember{
+	font-family: 'Work Sans';
+	background: none;
+	color: #3D3D3D;
+	border: none;
+	text-decoration: underline;
+	font-weight: 500;
+}
+
+.login-footer{
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 95%;
+}
+
+.form-error{
+	text-align: center;
+	padding: 10px 0;
+	font-weight: 700;
+}

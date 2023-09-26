@@ -1,6 +1,6 @@
 //Variables
 
-const urlApi = 'http://localhost:5678/api/works'; //URL de l'API
+const urlApi = 'http://localhost:5678/api/'; //URL de l'API
 const gallery = document.querySelector('.gallery');
 
 const allButton = document.getElementById('allButton');
@@ -8,13 +8,14 @@ const objectsButton = document.getElementById('objectsButton');
 const appartmentsButton = document.getElementById('appartmentsButton');
 const hotelsButton = document.getElementById('hotelsButton');
 
+const bearerAuth = window.localStorage.getItem("BearerAuth");
 
 //Creation d'un array pour stocker les datas de l'API et les manipuler sans refaire d'appel
 let data = [];
 
 
 //Request en GET
-fetch(urlApi)
+fetch(urlApi + 'works')
     //Récupération de la réponse de l'API et d'une éventuelle erreur de connexion
     .then(response => {
         if (!response.ok) {
