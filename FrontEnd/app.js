@@ -28,6 +28,8 @@ fetch(urlApi + 'works')
         data = dataApi
 
         updateFilter('all');
+        displayImagesInModal(data);
+
     })
     //Analyse d'une éventuelle erreur pendant la requête
     .catch( error => {

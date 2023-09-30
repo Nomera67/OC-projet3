@@ -2,7 +2,6 @@ const urlApi = 'http://localhost:5678/api/'; //URL de l'API
 const bearerAuth = window.localStorage.getItem("BearerAuth");
 const loginForm = document.querySelector("form");
 
-
 loginForm.addEventListener("submit", async function(event) {
     //Suppression du précédent message d'erreur possible et preventDefault pour éviter que le formulaire s'envoie
     //avant qu'on le décide avec le JS

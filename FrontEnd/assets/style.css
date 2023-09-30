@@ -47,9 +47,9 @@ table {
 	border-spacing: 0;
 }
 /** end reset css**/
-body {
+.main-container {
 	max-width: 1140px;
-	margin:auto;
+	margin: 0 auto;
 	font-family: 'Work Sans' ;
 	font-size: 14px;
 }
@@ -207,7 +207,7 @@ li:hover, a:hover {
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
-input[type="submit"]{
+input[type="submit"], .add-button{
 	font-family: 'Syne';
 	font-weight: 700;
 	color: white;
@@ -215,6 +215,7 @@ input[type="submit"]{
 	/* margin : 2em auto ; */
 	width: 180px;
 	text-align: center;
+	border: none;
 	border-radius: 60px ;
 }
 
@@ -298,4 +299,97 @@ footer nav ul {
 	text-align: center;
 	padding: 10px 0;
 	font-weight: 700;
+}
+
+/*Edit part*/
+
+
+.edition{
+	width: 100%;
+	height: 60px;
+	background-color: black;
+	border: none;
+	color: white;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	font-family: 'Work Sans';
+	font-weight: 400;
+	font-size: 16px;
+	gap: 12px;
+	cursor: pointer;
+}
+
+.add-button{
+	font-size: 14px;
+	padding: 10px 50px;
+	width: 240px;
+}
+
+.hidden{
+	display: none;
+}
+
+dialog{
+	flex-direction: column;
+	align-items: center;
+	border: none;
+	border-radius: 10px;
+	width: 630px;
+	position: relative;
+	padding: 60px 0px 45px 0px;
+	gap: 46px;
+}
+
+dialog::backdrop{
+	background: rgba(0, 0, 0, 0.30);
+}
+
+.close-button{
+	position: absolute;
+	top: 26px;
+	right: 30px;
+	font-size: 24px;
+	font-weight: 700;
+	background: none;
+	border: none;
+	cursor: pointer;
+}
+
+.dialog-title{
+	font-family: "Work Sans";
+	font-size: 26px;
+	font-weight: 400;
+}
+
+.modal-pictures{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	gap: 30px 10px;
+	max-width: 420px;
+	border-bottom: 1px solid #B3B3B3;
+	padding-bottom: 60px;
+}
+
+.modal-work{
+	position: relative;
+}
+
+.modal-work > img{
+	width: 76px;
+}
+
+.modal-work > button {
+	position: absolute;
+	right: 6px;
+	top: 6px;
+	background-color: black;
+	border: none;
+	border-radius: 2px;
+	display: grid;
+	place-items: center;
+	padding: 4px;
+	cursor: pointer;
 }
