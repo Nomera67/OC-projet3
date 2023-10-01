@@ -12,6 +12,7 @@ const bearerAuth = window.localStorage.getItem("BearerAuth");
 
 //Creation d'un array pour stocker les datas de l'API et les manipuler sans refaire d'appel
 let data = [];
+let categories = [];
 
 
 //Request en GET
@@ -76,3 +77,22 @@ appartmentsButton.addEventListener('click', () => {
 hotelsButton.addEventListener('click', () => {
     updateFilter(3);
 });
+
+//Request API pour les catégories
+
+fetch(urlApi + 'categories')
+    .then(response => {
+        if (!response.ok) {
+            console.log('Erreur lors de la demande');
+        }
+        return response.json();
+    })
+    //Récupération des données de l'API et stockage dans l'array data tout en mettant updateFilter en all pour tout afficher
+    .then(categoriesApi => {
+        categories = categoriesApi;
+        displayCategoriesInModal(categories);
+    })
+    //Analyse d'une éventuelle erreur pendant la requête
+    .catch( error => {
+        console.error('Erreur :', error);
+    })

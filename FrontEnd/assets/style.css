@@ -481,7 +481,9 @@ dialog::backdrop{
 	height: 50px;
 	border: none;
 	padding: 10px 20px;
-	color: #6C6C6C;
+	color: #444444;
+	font-size: 14px;
+	font-family: "Work Sans";
 	-webkit-appearance: none;
 	appearance: none;
 }
@@ -492,4 +494,8 @@ dialog::backdrop{
 
 .submit-button{
 	margin: auto;
+}
+
+.submit-img{
+	height: 100%;
 }

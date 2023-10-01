@@ -90,12 +90,12 @@
 		<button class="back-button">&#x2794;</button>
 		<h3 class="dialog-title">Ajout photo</h3>
 		<div class="modal-form">
-			<form action="index.html" method="POST" id="submit-form">
+			<form method="POST" id="submit-form" enctype="multipart/form-data">
 				<div class="submit-file">
 					<img src="./assets/icons/img-icon.svg" alt="Icône d'image">
-					<label for="fileInput" class="submit-label">+ Ajouter photo</label>
+					<label for="fileInput" class="submit-label" id="submit-label">+ Ajouter photo</label>
 					<input type="file" id="fileInput" name="image" accept=".jpg, .png" required>
-					<p>jpg, png : 4mo max</p>
+					<p id="submit-text">jpg, png : 4mo max</p>
 				</div>
 				<div class="submit-details">
 					<div class="submit-item">
@@ -109,7 +109,7 @@
 				</div>
 				<div class="inferior-border"></div>
 				<div class="submit-button">
-					<button id="addButton" class="add-button" disabled>Valider</button>
+					<input type="submit" id="addButton" class="add-button" value="Valider">
 				</div>
 			</form>
 		</div>
