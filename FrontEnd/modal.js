@@ -7,6 +7,7 @@ const submitForm = document.getElementById("submit-form");
 const submitLabel = document.getElementById("submit-label");
 const submitText = document.getElementById("submit-text");
 
+
 // Vérification de la connexion de l'utilisateur. Si une valeur est retournée c'est qu'il est connecté
 const utilisateurConnecte = !!window.localStorage.getItem("bearerAuth");
 const usableToken = JSON.parse(window.localStorage.getItem("bearerAuth")).token;
@@ -74,6 +75,7 @@ if (utilisateurConnecte) {
     })
 }
 
+
 function displayImagesInModal(data) {
     const modalPictures = document.querySelector('.modal-pictures');
 
@@ -81,10 +83,23 @@ function displayImagesInModal(data) {
         const workContainer = document.createElement('div');
         workContainer.classList.add('modal-work');
         modalPictures.appendChild(workContainer);
-        const workSolo = `<img src="${work.imageUrl}" alt=${work.title}><button><img src="./assets/icons/trash.svg"></button>`;
+        const workSpot = `<img src="${work.imageUrl}" alt="${work.title}">`;
+        const trashButton = `<button data-id="${work.id}" class="trash-button"><img class="trash-img" src="./assets/icons/trash.svg"></button>`;
+        const workSolo = workSpot + trashButton;
         workContainer.innerHTML = workSolo;
+
+        const trashButtonElement = workContainer.querySelector('.trash-button');
+        trashButtonElement.addEventListener('click', (event) => {
+            event.stopPropagation();
+            event.preventDefault();
+            const workId = trashButtonElement.dataset.id;
+            console.log(workId);
+            deleteImage(workId);
+        });
     });
 }
+
+
 
 function displayCategoriesInModal(categories) {
     
@@ -99,21 +114,20 @@ function displayCategoriesInModal(categories) {
     })
 }
 
-// Sélectionnez l'élément input de type fichier
 const fileInput = document.getElementById('fileInput');
 
-// Sélectionnez l'élément qui affichera l'aperçu de l'image
 const imagePreview = document.querySelector('.submit-file img');
 
-// Écoutez les changements dans le champ de fichier
 fileInput.addEventListener('change', (event) => {
-    const file = event.target.files[0]; // Récupérez le fichier sélectionné
+    // Récupérer le fichier sélectionné
+    const file = event.target.files[0]; 
 
-    // Vérifiez si le fichier est une image de type .jpg ou .png
+    // Vérification de l'extension du fichier
     if (file && (file.type === 'image/jpeg' || file.type === 'image/png')) {
-        // Vérifiez si la taille du fichier ne dépasse pas 4 Mo
-        if (file.size <= 4 * 1024 * 1024) { // 4 Mo en octets
-            // Si le fichier est valide, affichez l'aperçu
+        // Vérification de la taille du fichier
+        if (file.size <= 4 * 1024 * 1024) { 
+            // 4 Mo en octets
+            // Si le fichier est valide, afficher l'aperçu
             const reader = new FileReader();
 
             reader.onload = (e) => {
@@ -130,11 +144,11 @@ fileInput.addEventListener('change', (event) => {
             reader.readAsDataURL(file);
         } else {
             alert(`L'image est trop volumineuse. Elle ne doit pas dépasser 4 Mo.`);
-            fileInput.value = ''; // Réinitialisez le champ de fichier
+            fileInput.value = ''; // Réinitialiser le champ de fichier
         }
     } else {
         alert(`L'image doit être en .jpg ou .png.`);
-        fileInput.value = ''; // Réinitialisez le champ de fichier
+        fileInput.value = '';
     }
 });
 
@@ -177,3 +191,25 @@ submitForm.addEventListener('submit', (event) => {
         console.error('Erreur :', error);
     })
 })
+
+function deleteImage(workId) {
+    console.log(workId);
+
+    fetch(urlApi + `works/${workId}`, {
+        method: "DELETE",
+        headers: { 'Authorization': `Bearer ${usableToken}` },
+    })
+    .then(response => {
+        if (response.status === 204) {
+            console.log("Image supprimée avec succès : " + workId);
+        } else {
+            console.error("Erreur lors de la suppression de l'image : " + workId);
+        }
+        if(workContainer){
+            workContainer.remove();
+        }
+    })
+    .catch(error => {
+        console.error("Erreur lors de la suppression de l'image : " + error);
+    });
+}

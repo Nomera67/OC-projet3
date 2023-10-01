@@ -216,11 +216,14 @@ input[type="submit"], .add-button{
 	font-weight: 700;
 	color: white;
 	background-color: #1D6154;
-	/* margin : 2em auto ; */
 	width: 180px;
 	text-align: center;
 	border: none;
 	border-radius: 60px ;
+}
+
+.contact-button{
+	margin : 2em auto ;
 }
 
 footer nav ul {
@@ -394,8 +397,10 @@ dialog::backdrop{
 	width: 76px;
 }
 
-.modal-work > button {
+.trash-button {
 	position: absolute;
+	width: 17px;
+	height: 17px;
 	right: 6px;
 	top: 6px;
 	background-color: black;
@@ -405,6 +410,11 @@ dialog::backdrop{
 	place-items: center;
 	padding: 4px;
 	cursor: pointer;
+}
+
+.trash-img{
+	display: block;
+	color: white;
 }
 
 /*Second modal*/
