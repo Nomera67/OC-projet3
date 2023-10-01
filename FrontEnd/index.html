@@ -73,12 +73,46 @@
 			</nav>
 		</footer>
 	</div>
+
+	<!-- Modal d'édition -->
 	<dialog id="modal" class="hidden" aria-hidden="true" role="dialog" aria-modal="false" aria-labelledby="titlemodal">
-		<button id="closeModal" class="close-button">&times;</button>
+		<button class="close-button closeModal">&times;</button>
 		<h3 class="dialog-title">Galerie photo</h3>
 		<div class="modal-pictures">
 		</div>
 		<button id="addButton" class="add-button">Ajouter une photo</button>
-	</dialog>		
+	</dialog>
+	
+
+	<!-- modal d'ajout  -->
+	<dialog id="modal2" class="hidden" aria-hidden="true" role="dialog" aria-modal="false" aria-labelledby="titlemodal">
+		<button class="close-button closeModal">&times;</button>
+		<button class="back-button">&#x2794;</button>
+		<h3 class="dialog-title">Ajout photo</h3>
+		<div class="modal-form">
+			<form action="index.html" method="POST" id="submit-form">
+				<div class="submit-file">
+					<img src="./assets/icons/img-icon.svg" alt="Icône d'image">
+					<label for="fileInput" class="submit-label">+ Ajouter photo</label>
+					<input type="file" id="fileInput" name="image" accept=".jpg, .png" required>
+					<p>jpg, png : 4mo max</p>
+				</div>
+				<div class="submit-details">
+					<div class="submit-item">
+						<label for="titre">Titre</label>
+						<input type="text" id="titre" name="titre" required>
+					</div>
+					<div class="submit-item">
+						<label for="categorie">Catégorie</label>
+						<select name="categorie" id="categorie" class="select-categorie"></select>
+					</div>
+				</div>
+				<div class="inferior-border"></div>
+				<div class="submit-button">
+					<button id="addButton" class="add-button" disabled>Valider</button>
+				</div>
+			</form>
+		</div>
+	</dialog>	
 </body>
 </html>
