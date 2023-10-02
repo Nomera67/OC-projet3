@@ -15,8 +15,14 @@ const usableToken = JSON.parse(window.localStorage.getItem("bearerAuth")).token;
 
 
 if (utilisateurConnecte) {
+    console.log(usableToken);
     const editButtonContainer = document.getElementById("edit-button-container");
     const addButton = document.getElementById("addButton");
+    const filters = document.querySelector('.filters-container');
+
+    //Disparition en gardant le même écart des filtres de l'écran d'accueil
+
+    filters.classList.add('filter-hidden');
 
     // Création du bouton d'édition
     const editButton = document.createElement("button");
@@ -73,6 +79,37 @@ if (utilisateurConnecte) {
         addModal.setAttribute("aria-modal", "false");
         submitForm.reset();
     })
+
+    window.addEventListener('click', (event) => {
+        if (event.target === modal || event.target === addModal) {
+            modal.close();
+            modal.style.display = "none";
+            modal.getAttribute("aria-hidden");
+            modal.setAttribute("aria-modal", "false");
+            addModal.close();
+            addModal.style.display = "none";
+            addModal.getAttribute("aria-hidden");
+            addModal.setAttribute("aria-modal", "false");
+            submitForm.reset();
+        }
+    });
+
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+            modal.close();
+            modal.style.display = "none";
+            modal.getAttribute("aria-hidden");
+            modal.setAttribute("aria-modal", "false");
+            addModal.close();
+            addModal.style.display = "none";
+            addModal.getAttribute("aria-hidden");
+            addModal.setAttribute("aria-modal", "false");
+            submitForm.reset();
+        }
+    });
+    
+} else {
+    editButton.classList.add('hidden');
 }
 
 
@@ -81,21 +118,18 @@ function displayImagesInModal(data) {
 
     data.forEach(work => {
         const workContainer = document.createElement('div');
+        workContainer.id = work.id;
         workContainer.classList.add('modal-work');
         modalPictures.appendChild(workContainer);
         const workSpot = `<img src="${work.imageUrl}" alt="${work.title}">`;
-        const trashButton = `<button data-id="${work.id}" class="trash-button"><img class="trash-img" src="./assets/icons/trash.svg"></button>`;
+        const trashButton = `<button type="button" data-id="${work.id}" class="trash-button"><img class="trash-img" src="./assets/icons/trash.svg"></button>`;
         const workSolo = workSpot + trashButton;
         workContainer.innerHTML = workSolo;
 
         const trashButtonElement = workContainer.querySelector('.trash-button');
-        trashButtonElement.addEventListener('click', (event) => {
-            event.stopPropagation();
-            event.preventDefault();
-            const workId = trashButtonElement.dataset.id;
-            console.log(workId);
-            deleteImage(workId);
-        });
+        trashButtonElement.onclick = function () {
+            deleteImage(work.id);
+        }
     });
 }
 
@@ -193,7 +227,8 @@ submitForm.addEventListener('submit', (event) => {
 })
 
 function deleteImage(workId) {
-    console.log(workId);
+    const workContainer = document.getElementById(workId);
+
 
     fetch(urlApi + `works/${workId}`, {
         method: "DELETE",
@@ -202,14 +237,15 @@ function deleteImage(workId) {
     .then(response => {
         if (response.status === 204) {
             console.log("Image supprimée avec succès : " + workId);
+            
+            workContainer.remove(); 
         } else {
             console.error("Erreur lors de la suppression de l'image : " + workId);
-        }
-        if(workContainer){
-            workContainer.remove();
         }
     })
     .catch(error => {
         console.error("Erreur lors de la suppression de l'image : " + error);
     });
+
+
 }

@@ -50,7 +50,7 @@ loginForm.addEventListener("submit", async function(event) {
         window.localStorage.setItem("bearerAuth", JSON.stringify(body));
         
         //Redirection vers la page d'accueil
-        window.location.replace("index.html");
+        window.location.replace("index.html#edit-button-container");
     })
 
     .catch(e => {
