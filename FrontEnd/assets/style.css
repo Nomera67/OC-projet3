@@ -406,6 +406,7 @@ dialog::backdrop{
 
 .modal-work > img{
 	width: 76px;
+	height: 100px;
 }
 
 .trash-button {

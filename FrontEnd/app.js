@@ -51,7 +51,8 @@ function updateFilter(category) {
     data.forEach(work => {
         if(category === 'all' || work.categoryId === category) {
             const figure = document.createElement('figure');
-    
+            figure.setAttribute('data-id', work.id);
+
             figure.innerHTML = `
                 <img src="${work.imageUrl}" alt="${work.title}"/>
                 <figcaption>${work.title}</figcaption>
