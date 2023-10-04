@@ -12,45 +12,47 @@
 	<script src="./login.js" type="module"></script>
 </head>
 <body>
-<header>
-	<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
-	<nav>
-		<ul>
-			<li><a href="./index.html">projets</a></li>
-			<li>contact</li>
-			<li><a href="./login.html">login</a></li>
-			<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
-		</ul>
-	</nav>
-</header>
-
-<main class="login-main">
-	<div class="login-container">
-		<h2>Log In</h2>
-		<form action="login.html" method="post" id="loginform">
-			<div class="login-sections">
-				<label for="email" class="login-label">E-mail</label>
-				<input type="email" id="email" name="email" required class="login-input">
+	<div class="main-container">
+		<header>
+			<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
+			<nav>
+				<ul>
+					<li><a href="./index.html">projets</a></li>
+					<li>contact</li>
+					<li><a href="./login.html">login</a></li>
+					<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
+				</ul>
+			</nav>
+		</header>
+		
+		<main class="login-main">
+			<div class="login-container">
+				<h2>Log In</h2>
+				<form action="login.html" method="post" id="loginform">
+					<div class="login-sections">
+						<label for="email" class="login-label">E-mail</label>
+						<input type="email" id="email" name="email" required class="login-input">
+					</div>
+					<div class="login-sections">
+						<label for="password" class="login-label">Mot de passe</label>
+						<input type="password" id="password" name="password" required class="login-input">
+					</div>
+					<div class="login-buttons">
+						<input type="submit" value="Se connecter" id="login-connect">
+						<input type="button" value="Mot de passe oublié" id="login-remember">
+					</div>
+				</form>
 			</div>
-			<div class="login-sections">
-				<label for="password" class="login-label">Mot de passe</label>
-				<input type="password" id="password" name="password" required class="login-input">
-			</div>
-			<div class="login-buttons">
-				<input type="submit" value="Se connecter" id="login-connect">
-				<input type="button" value="Mot de passe oublié" id="login-remember">
-			</div>
-		</form>
+			<div class="login-error" id="login-error"></div>
+		</main>
+		
+		<footer class="login-footer">
+			<nav>
+				<ul>
+					<li>Mentions Légales</li>
+				</ul>
+			</nav>
+		</footer>    
 	</div>
-	<div class="login-error" id="login-error"></div>
-</main>
-
-<footer class="login-footer">
-	<nav>
-		<ul>
-			<li>Mentions Légales</li>
-		</ul>
-	</nav>
-</footer>    
 </body>
 </html>

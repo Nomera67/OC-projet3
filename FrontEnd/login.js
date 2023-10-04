@@ -3,6 +3,7 @@ const bearerAuth = window.localStorage.getItem("BearerAuth");
 const loginForm = document.querySelector("form");
 
 
+
 loginForm.addEventListener("submit", async function(event) {
     //Suppression du précédent message d'erreur possible et preventDefault pour éviter que le formulaire s'envoie
     //avant qu'on le décide avec le JS
@@ -47,8 +48,9 @@ loginForm.addEventListener("submit", async function(event) {
     .then(body => {
         //Enregistrer le token dans le stockage local pour pouvoir l'utiliser ensuite
         window.localStorage.setItem("bearerAuth", JSON.stringify(body));
+        
         //Redirection vers la page d'accueil
-        window.location.replace("index.html");
+        window.location.replace("index.html#edit-button-container");
     })
 
     .catch(e => {
