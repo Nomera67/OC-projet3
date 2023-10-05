@@ -75,9 +75,9 @@
 	</div>
 
 	<!-- Modal d'édition -->
-	<dialog id="modal" class="hidden" aria-hidden="true" role="dialog" aria-modal="false" aria-labelledby="titlemodal">
+	<dialog id="modal" class="hidden" aria-hidden="true" aria-modal="false" role="dialog" aria-labelledby="gallery-title">
 		<button class="close-button closeModal">&times;</button>
-		<h3 class="dialog-title">Galerie photo</h3>
+		<h3 class="dialog-title" id="gallery-title">Galerie photo</h3>
 		<div class="modal-pictures">
 		</div>
 		<button id="addButton" class="add-button">Ajouter une photo</button>
@@ -85,10 +85,10 @@
 	
 
 	<!-- modal d'ajout  -->
-	<dialog id="modal2" class="hidden" aria-hidden="true" role="dialog" aria-modal="false" aria-labelledby="titlemodal">
+	<dialog id="modal2" class="hidden" aria-hidden="true" aria-modal="false" role="dialog" aria-labelledby="submit-title">
 		<button class="close-button closeModal">&times;</button>
 		<button class="back-button">&#x2794;</button>
-		<h3 class="dialog-title">Ajout photo</h3>
+		<h3 class="dialog-title" id="submit-title">Ajout photo</h3>
 		<div class="modal-form">
 			<form method="POST" id="submit-form" enctype="multipart/form-data">
 				<div class="submit-file">
@@ -109,7 +109,7 @@
 				</div>
 				<div class="inferior-border"></div>
 				<div class="submit-button">
-					<input type="submit" id="addButton" class="add-button" value="Valider">
+					<button type="submit" id="submitModalButton" class="add-button" value="Valider" disabled>Valider</button>
 				</div>
 			</form>
 		</div>

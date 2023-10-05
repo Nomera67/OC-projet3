@@ -51,6 +51,35 @@ table {
 	border-spacing: 0;
 }
 /** end reset css**/
+
+
+/** Variables **/
+
+:root{
+	--green-color: #1D6154;
+	--orange-color: #B1663C;
+	--disabled-button: #A7A7A7;
+	--label-color: #3D3D3D;
+	--dark-color: #000000;
+	--white-color: #FFFFFF;
+	--shadow-color: #00000017;
+	--submit-color: #E8F1F6;
+	--text-submit-color: #306685;
+	--login-color: #3D3D3D;
+	--border-color: #B3B3B3;
+	--submit-label-color: #CBD6DC;
+}
+
+/** DRY (too much) CSS **/
+
+h1, #portfolio, .gallery figure, #contact form,
+.login-container, .login-sections, .login-form, .login-buttons, #login-form,
+#submit-form, .submit-file, .submit-details, .submit-item{
+	display: flex;
+	flex-direction: column;
+}
+
+
 .main-container {
 	max-width: 1140px;
 	margin: 0 auto;
@@ -67,12 +96,10 @@ section {
 }
 
 h1{
-	display: flex;
-	flex-direction: column;
 	font-family: 'Syne';
 	font-size: 22px;
 	font-weight: 800;
-	color: #B1663C
+	color: var(--orange-color);
 }
 
 h1 > span {
@@ -86,7 +113,7 @@ h2{
 	font-family: 'Syne';
 	font-weight: 700;
 	font-size: 30px;
-	color: #1D6154
+	color: var(--green-color);
 }
 nav ul {
 	display: flex;
@@ -101,11 +128,11 @@ nav li {
 
 nav a {
 	text-decoration: none;
-	color: black;
+	color: var(--dark-color);
 }
 
 li:hover, a:hover {
-	color: #B1663C;
+	color: var(--orange-color);
 }
 
 #introduction {
@@ -133,8 +160,6 @@ li:hover, a:hover {
 }
 
 #portfolio {
-	display: flex;
-	flex-direction: column;
 	align-items: center;
 	gap: 25px;
 }
@@ -152,8 +177,8 @@ li:hover, a:hover {
 }
 
 .filter{
-	color: #1D6154;
-	border: 1px solid #1D6154;
+	color: var(--green-color);
+	border: 1px solid var(--green-color);
 	border-radius: 60px;
 	background-color: transparent;
 	padding: 9px 15px;
@@ -163,8 +188,8 @@ li:hover, a:hover {
 }
 
 .filter:hover, .filter:focus{
-	background-color: #1D6154;
-	color: white;
+	background-color: var(--green-color);
+	color: var(--white-color);
 }
 
 .filter-hidden{
@@ -185,8 +210,6 @@ li:hover, a:hover {
 }
 
 .gallery figure{
-	display: flex;
-	flex-direction: column;
 	gap: 7px;
 }
 
@@ -204,29 +227,27 @@ li:hover, a:hover {
 #contact form {
 	text-align: left;
 	margin-top:30px;
-	display: flex;
-	flex-direction: column;
 }
 
 #contact input {
 	height: 50px;
 	font-size: 1.2em;
 	border: none;
-	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+	box-shadow: 0px 4px 14px var(--shadow-color);
 }
 #contact label {
 	margin: 2em 0 1em 0;
 }
 #contact textarea {
 	border: none;
-	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+	box-shadow: 0px 4px 14px var(--shadow-color);
 }
 
 input[type="submit"], .add-button{
 	font-family: 'Syne';
 	font-weight: 700;
-	color: white;
-	background-color: #1D6154;
+	color: var(--white-color);
+	background-color: var(--green-color);
 	width: 180px;
 	text-align: center;
 	border: none;
@@ -245,16 +266,12 @@ footer nav ul {
 
 /* Login section */
 
-.login-container, .login-sections, .login-buttons, #login-form{
-	display: flex;
-	flex-direction: column;
-}
 
 .login-main{
 	margin: 150px 0 0 0;
 }
 
-#login-form{
+.login-form{
 	gap: 30px;
 }
 
@@ -277,10 +294,10 @@ footer nav ul {
 .login-input{
 	width: 380px;
 	height: 50px;
-	background-color: #ffffff;
+	background-color: var(--white-color);
 	border: none;
-	box-shadow: 0px 4px 14px 0px #00000017;
-	margin: none;
+	box-shadow: 0px 4px 14px 0px var(--shadow-color);
+	margin: 0;
 }
 
 .login-buttons{
@@ -300,7 +317,7 @@ footer nav ul {
 #login-remember{
 	font-family: 'Work Sans';
 	background: none;
-	color: #3D3D3D;
+	color: var(--login-color);
 	border: none;
 	text-decoration: underline;
 	font-weight: 500;
@@ -325,9 +342,9 @@ footer nav ul {
 .edition{
 	width: 100%;
 	height: 60px;
-	background-color: black;
+	background-color: var(--dark-color);
 	border: none;
-	color: white;
+	color: var(--white-color);
 	display: flex;
 	flex-direction: row;
 	align-items: center;
@@ -362,14 +379,13 @@ dialog{
 }
 
 dialog::backdrop{
-	background: rgba(0, 0, 0, 0.30);
+	background: rgba(0, 0, 0, 0.3);
 }
 
 .close-button, .back-button{
 	position: absolute;
 	top: 26px;
 	font-size: 24px;
-	/* font-weight: 700; */
 	background: none;
 	border: none;
 	cursor: pointer;
@@ -396,7 +412,7 @@ dialog::backdrop{
 	flex-wrap: wrap;
 	gap: 30px 10px;
 	max-width: 420px;
-	border-bottom: 1px solid #B3B3B3;
+	border-bottom: 1px solid var(--border-color);
 	padding-bottom: 60px;
 }
 
@@ -415,7 +431,7 @@ dialog::backdrop{
 	height: 17px;
 	right: 6px;
 	top: 6px;
-	background-color: black;
+	background-color: var(--dark-color);
 	border: none;
 	border-radius: 2px;
 	display: grid;
@@ -426,14 +442,12 @@ dialog::backdrop{
 
 .trash-img{
 	display: block;
-	color: white;
+	color: var(--white-color);
 }
 
 /*Second modal*/
 
 #submit-form{
-	display: flex;
-	flex-direction: column;
 	gap: 30px;
 	width: 420px;
 }
@@ -441,7 +455,7 @@ dialog::backdrop{
 .inferior-border{
 	height: 1px;
 	width: 100%;
-	background-color: #B3B3B3;
+	background-color: var(--border-color);
 }
 
 #fileInput{
@@ -449,7 +463,7 @@ dialog::backdrop{
 }
 
 .submit-label{
-	background-color: #CBD6DC;
+	background-color: var(--submit-label-color);
 	font-family: "Work Sans";
 	font-weight: 500;
 	font-size: 14px;
@@ -461,13 +475,11 @@ dialog::backdrop{
 
 .submit-file{
 	font-family: "Work Sans";
-	display: flex;
-	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 	gap: 6px;
-	color: #306685;
-	background-color: #E8F1F6;
+	color: var(--text-submit-color);
+	background-color: var(--submit-color);
 	width: 100%;
 	height: 170px;
 }
@@ -477,15 +489,11 @@ dialog::backdrop{
 }
 
 .submit-details{
-	display: flex;
-	flex-direction: column;
 	gap: 20px;
 	margin-bottom: 17px;
 }
 
 .submit-item{
-	display: flex;
-	flex-direction: column;
 	gap: 10px;
 	align-items: flex-start;
 }
@@ -494,11 +502,11 @@ dialog::backdrop{
 	font-family: "Work Sans";
 	font-size: 14px;
 	font-weight: 500;
-	color: #3D3D3D;
+	color: var(--label-color);
 }
 
 .select-categorie, .submit-item > input{
-	box-shadow: 0px 4px 14px 0px #00000017;
+	box-shadow: 0px 4px 14px 0px var(--shadow-color);
 	width: 100%;
 	height: 50px;
 	border: none;
@@ -520,4 +528,8 @@ dialog::backdrop{
 
 .submit-img{
 	height: 100%;
+}
+
+.add-button:disabled{
+	background-color: var(--disabled-button);
 }

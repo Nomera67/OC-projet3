@@ -10,14 +10,15 @@ const hotelsButton = document.getElementById('hotelsButton');
 
 const bearerAuth = window.localStorage.getItem("BearerAuth");
 
-//Creation d'un array pour stocker les datas de l'API et les manipuler sans refaire d'appel
+//Creation de deux array pour stocker les datas et les categories de l'API et les manipuler sans refaire d'appel
+
 let data = [];
 let categories = [];
 
 // A utiliser pendant les tests pour clear le localStorage et voir le comportement avec/sans token
 // localStorage.clear();
 
-//Request en GET
+//Request en GET pour recevoir la liste des projets du portfolio
 
 fetch(urlApi + 'works')
     //Récupération de la réponse de l'API et d'une éventuelle erreur de connexion
@@ -28,6 +29,7 @@ fetch(urlApi + 'works')
         return response.json();
     })
     //Récupération des données de l'API et stockage dans l'array data tout en mettant updateFilter en all pour tout afficher
+    //Et displayImagesInModal pour mettre les projets dans la modal
     .then(dataApi => {
         data = dataApi
 
@@ -39,6 +41,27 @@ fetch(urlApi + 'works')
     .catch( error => {
         console.error('Erreur :', error);
     })
+
+
+    //Request API pour les catégories
+
+fetch(urlApi + 'categories')
+    .then(response => {
+        if (!response.ok) {
+            console.log('Erreur lors de la demande');
+        }
+        return response.json();
+    })
+    //Récupération des données de l'API et stockage dans l'array data tout en mettant updateFilter en all pour tout afficher
+    .then(categoriesApi => {
+        categories = categoriesApi;
+        displayCategoriesInModal(categories);
+    })
+    //Analyse d'une éventuelle erreur pendant la requête
+    .catch( error => {
+        console.error('Erreur :', error);
+    })
+
 
 //Fonction pour mettre à jour les filtres avec la catégorie souhaitée
 function updateFilter(category) {
@@ -69,7 +92,6 @@ allButton.addEventListener('click', () => {
     updateFilter('all');
 });
 
-
 objectsButton.addEventListener('click', () => {
     updateFilter(1);
 });
@@ -82,21 +104,4 @@ hotelsButton.addEventListener('click', () => {
     updateFilter(3);
 });
 
-//Request API pour les catégories
 
-fetch(urlApi + 'categories')
-    .then(response => {
-        if (!response.ok) {
-            console.log('Erreur lors de la demande');
-        }
-        return response.json();
-    })
-    //Récupération des données de l'API et stockage dans l'array data tout en mettant updateFilter en all pour tout afficher
-    .then(categoriesApi => {
-        categories = categoriesApi;
-        displayCategoriesInModal(categories);
-    })
-    //Analyse d'une éventuelle erreur pendant la requête
-    .catch( error => {
-        console.error('Erreur :', error);
-    })
