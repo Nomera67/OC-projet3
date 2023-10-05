@@ -16,8 +16,10 @@ Vous y trouvez tout simplement :
 
 ## Passage au W3C
 
-Pas encore de passage au W3C
+Validation CSS : Aucune erreur
+Validation HTML : Présence de deux role="dialog" sur des modales en <dialog> relevée. Ils sont laissés à des fins d'accessibilité, certains lecteurs d'écran bas de gamme ne voyant pas <dialog> mais lisant le role.
 
-## Améliorations possibles
+## Auteur
 
+- [@Nomera67](https://github.com/Nomera67)
 /
