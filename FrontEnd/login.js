@@ -14,7 +14,7 @@ loginForm.addEventListener("submit", async function(event) {
         previousError.remove();
     }
 
-    //Récupération des valeurs de connexion
+    //Récupération des valeurs de connexion mis dans le formulaire
     const loginFormDatas = {
         email: event.target.querySelector("[name=email]").value,
         password: event.target.querySelector("[name=password]").value
@@ -49,10 +49,11 @@ loginForm.addEventListener("submit", async function(event) {
         //Enregistrer le token dans le stockage local pour pouvoir l'utiliser ensuite
         window.localStorage.setItem("bearerAuth", JSON.stringify(body));
         
-        //Redirection vers la page d'accueil
+        //Redirection vers la page d'accueil et l'ancre correspondante
         window.location.replace("index.html#edit-button-container");
     })
 
+    //En cas d'erreur
     .catch(e => {
         //Création du message d'erreur et de sa mise en place
         const error = document.createElement("div");

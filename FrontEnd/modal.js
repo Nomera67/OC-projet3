@@ -7,14 +7,17 @@ const submitForm = document.getElementById("submit-form");
 const submitLabel = document.getElementById("submit-label");
 const submitText = document.getElementById("submit-text");
 const addButton = document.getElementById("addButton");
+const submitModalButton = document.getElementById('submitModalButton')
+const fileInput = document.getElementById('fileInput');
+const imagePreview = document.querySelector('.submit-file img');
 
-
-// Vérification de la connexion de l'utilisateur. Si une valeur est retournée c'est qu'il est connecté
+// Utilisation de !! pour garantir une réponse en true ou false. Sans ça on peut renvoyer
+// null qui serait vu comme une présence de la variable
 const utilisateurConnecte = !!window.localStorage.getItem("bearerAuth");
 const usableToken = JSON.parse(window.localStorage.getItem("bearerAuth")).token;
 
-// Fonctions utilitaires
 
+// Fonctions utilitaires
 
 function resetImg(){
     submitLabel.classList.remove("hidden");
@@ -54,14 +57,12 @@ function hideSubmitModal(){
 }
 
 
-
+// Vérification de la connexion de l'utilisateur. Si une valeur est retournée c'est qu'il est connecté
 if (utilisateurConnecte) {
-    console.log(usableToken);
     const editButtonContainer = document.getElementById("edit-button-container");
     const filters = document.querySelector('.filters-container');
 
-    //Disparition en gardant le même écart des filtres de l'écran d'accueil
-
+    //Disparition des filtres en gardant le même écart des filtres de l'écran d'accueil
     filters.classList.add('filter-hidden');
 
     // Création du bouton d'édition
@@ -73,7 +74,8 @@ if (utilisateurConnecte) {
     // Ajout du bouton au container déjà préparé en HTML à cet effet
     editButtonContainer.appendChild(editButton);
 
-       
+    
+    //Cas d'utilisation des différents boutons et leurs effets
     editButton.addEventListener("click", () => {
         showFirstModal();
     });
@@ -123,7 +125,8 @@ if (utilisateurConnecte) {
 
 
 
-
+//Utilisation de l'array data et création pour chaque projet
+//de leur place dans le DOM au niveau de la modal
 function displayImagesInModal(data) {
     const modalPictures = document.querySelector('.modal-pictures');
 
@@ -145,10 +148,9 @@ function displayImagesInModal(data) {
 }
 
 
-
+//Utilisation de l'array categories et création des options
+//dans la modal
 function displayCategoriesInModal(categories) {
-    
-
     categories.forEach(category => {
         const categoryOption = document.createElement("option");
         categoryOption.classList.add('submit-option');
@@ -159,10 +161,9 @@ function displayCategoriesInModal(categories) {
     })
 }
 
-const fileInput = document.getElementById('fileInput');
 
-const imagePreview = document.querySelector('.submit-file img');
-
+//Fonction pour l'envoie d'images avec vérification de l'extension
+//et de sa taille pour valider l'aperçu et l'envoie
 fileInput.addEventListener('change', (event) => {
     // Récupérer le fichier sélectionné
     const file = event.target.files[0];
@@ -181,9 +182,6 @@ fileInput.addEventListener('change', (event) => {
                 imagePreview.classList.add('submit-img');
                 submitLabel.classList.add("hidden");
                 submitText.classList.add("hidden");
-
-                // Activer le bouton Valider
-                addButton.removeAttribute('disabled');
             };
 
             reader.readAsDataURL(file);
@@ -197,14 +195,26 @@ fileInput.addEventListener('change', (event) => {
     }
 });
 
+submitForm.addEventListener("input", () => {
+    // Vérification si tous les champs sont valides
+    const isFormValid = submitForm.checkValidity();
+  
+    // Activation ou désactivion du bouton de validation en fonction de la validité du formulaire
+    if (isFormValid) {
+        submitModalButton.removeAttribute("disabled");
+    } else {
+        submitModalButton.setAttribute("disabled", "disabled");
+    }
+  });
 
+// (très) longue fonction pour la requête POST d'un nouveau projet
+// Une fois l'ajout confirmé dans la BDD, ajout dans le DOM pour la modal et la page d'accueil
 submitForm.addEventListener('submit', (event) => {
     event.preventDefault();
 
     const title = document.getElementById('titre').value;
     const categoryId = document.getElementById('categorie').value;
     const picture = document.getElementById('fileInput').files[0];
-    const formSubmit = document.getElementById('submit-form');
     
     const formData = new FormData();
     formData.append("title", title);
@@ -248,7 +258,7 @@ submitForm.addEventListener('submit', (event) => {
             modalPictures.appendChild(workContainer); // Ajouter la nouvelle image au DOM
 
             updateFilter('all'); // Mettre à jour les filtres
-            formSubmit.reset(); // Réinitialiser le formulaire
+            submitForm.reset(); // Réinitialiser le formulaire
             resetImg();
             hideFirstModal();
             hideSubmitModal();
@@ -259,6 +269,7 @@ submitForm.addEventListener('submit', (event) => {
     });
 })
 
+//Requête DELETE avec suppression du DOM en cas de succès de la demande pour ne pas avoir besoin de recharger la page
 function deleteImage(workId) {
     const workContainer = document.getElementById(workId);
     const workFigure = document.querySelector(`figure[data-id="${workId}"]`);
