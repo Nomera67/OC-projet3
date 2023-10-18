@@ -7,7 +7,7 @@ const submitForm = document.getElementById("submit-form");
 const submitLabel = document.getElementById("submit-label");
 const submitText = document.getElementById("submit-text");
 const addButton = document.getElementById("addButton");
-const submitModalButton = document.getElementById('submitModalButton')
+const submitModalButton = document.getElementById('submitModalButton');
 const fileInput = document.getElementById('fileInput');
 const imagePreview = document.querySelector('.submit-file img');
 
@@ -62,6 +62,18 @@ if (utilisateurConnecte) {
     const editButtonContainer = document.getElementById("edit-button-container");
     const filters = document.querySelector('.filters-container');
 
+    const navLog = document.getElementById("nav-log");
+
+    // Changer le texte du lien en "logout"
+    navLog.innerText = 'logout';
+    navLog.href = '#';
+
+    // Effacer le Local Storage en cas de clic
+    navLog.addEventListener("click", () => {
+        localStorage.clear();
+        window.location.href = "./index.html";
+    });
+
     //Disparition des filtres en gardant le même écart des filtres de l'écran d'accueil
     filters.classList.add('filter-hidden');
 
@@ -73,6 +85,17 @@ if (utilisateurConnecte) {
 
     // Ajout du bouton au container déjà préparé en HTML à cet effet
     editButtonContainer.appendChild(editButton);
+
+    // Création d'un bouton de modification 
+    const galleryModify = document.getElementById('gallery-modify');
+    const modificationGallery = document.createElement('button');
+    modificationGallery.classList.add('gallery-modify-button');
+    modificationGallery.innerHTML = '<img src="./assets/icons/modify.png" alt="modification button"> modifier'
+    galleryModify.appendChild(modificationGallery);
+
+    modificationGallery.addEventListener("click", () => {
+        showFirstModal();
+    })
 
     
     //Cas d'utilisation des différents boutons et leurs effets
