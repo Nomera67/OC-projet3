@@ -36,12 +36,9 @@ loginForm.addEventListener("submit", async function(event) {
     .then(response => {
         if (response.ok === true) {
             return response.json();
-        //Message d'erreur si status 404 au retour, donc données non-reconnues
-        } else if (response.status === 404) {
-            throw new Error("Cet identifiant n'existe pas.");
-        //Message d'erreur si status 401 au retour, donc données incorrectes
-        } else if (response.status === 401) {
-            throw new Error(`Votre mot de passe n'est pas correct.`);
+        //Message d'erreur si status 404 ou 401
+        } else {
+            throw new Error(`Erreur dans l’identifiant ou le mot de passe.`);
         }
     })
 

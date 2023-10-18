@@ -533,3 +533,23 @@ dialog::backdrop{
 .add-button:disabled{
 	background-color: var(--disabled-button);
 }
+
+.gallery-modify-button{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+	background: none;
+	border: none;
+	cursor: pointer;
+	font-family: 'Work Sans';
+	font-size: 14px;
+	position: absolute;
+	left: 220px;
+	top: 7px;
+}
+
+.portfolio-title{
+	position: relative;
+}

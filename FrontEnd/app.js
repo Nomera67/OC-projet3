@@ -15,9 +15,6 @@ const bearerAuth = window.localStorage.getItem("BearerAuth");
 let data = [];
 let categories = [];
 
-// A utiliser pendant les tests pour clear le localStorage et voir le comportement avec/sans token
-// localStorage.clear();
-
 //Request en GET pour recevoir la liste des projets du portfolio
 
 fetch(urlApi + 'works')
